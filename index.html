@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chúc Mừng Năm Mới 2026 - Bính Ngọ</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600;800&family=Playfair+Display:ital,wght@1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --tet-red: #D00000;
+            --tet-gold: #FFD700;
+            --tet-cream: #FFFDD0;
+            --tet-dark-red: #8B0000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, #D00000 0%, #8B0000 100%);
+            color: #333;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Background Canvas */
+        #bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* --- ENVELOPE STYLES --- */
+        .envelope-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 320px;
+            max-width: 90%;
+            height: 220px;
+            cursor: pointer;
+            transition: all 0.6s ease-in-out;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* When opening: Scale up then fade out */
+        .envelope-wrapper.opening {
+            transform: scale(1.5);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .envelope {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #E60000 0%, #B30000 100%);
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--tet-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .envelope::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 1px dashed var(--tet-gold);
+            border-radius: 8px;
+            opacity: 0.7;
+        }
+
+        .seal {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            z-index: 20;
+            border: 2px solid #FFF;
+        }
+
+        .tap-hint {
+            position: absolute;
+            bottom: -50px;
+            width: 100%;
+            text-align: center;
+            color: var(--tet-gold);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            100% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+        }
+
+        /* --- LETTER STYLES --- */
+        .letter-container {
+            position: absolute;
+            z-index: 5;
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            background: var(--tet-cream);
+            border-radius: 6px;
+            padding: 5px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            pointer-events: none;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .letter-container.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .letter-inner {
+            border: 2px solid var(--tet-red);
+            padding: 25px 20px;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23d00000' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            text-align: center;
+        }
+
+        /* Stylized "Horse" Character */
+        .horse-symbol {
+            font-family: "Courier New", Courier, monospace;
+            font-weight: bold;
+            font-size: 3rem;
+            color: var(--tet-red);
+            display: block;
+            margin: 0 auto 10px;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border: 3px solid var(--tet-gold);
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--tet-red);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #4a4a4a;
+            text-align: justify;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .sender-block {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: var(--tet-red);
+            font-weight: 700;
+        }
+
+        .sender-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: var(--tet-red);
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* Lucky Button */
+        .lucky-btn {
+            background: linear-gradient(to bottom, #FFD700, #FFA500);
+            border: 2px solid #edb100;
+            color: #8B0000;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 20px;
+            animation: btn-pulse 2s infinite;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @keyframes btn-pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(255, 165, 0, 0.5);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 4px 25px rgba(255, 165, 0, 0.8);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(255, 165, 0, 0.5);
+            }
+        }
+
+        .lucky-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Corner Decors */
+        .corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-style: solid;
+            border-color: var(--tet-gold);
+            border-width: 4px;
+        }
+
+        .tl {
+            top: 10px;
+            left: 10px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .tr {
+            top: 10px;
+            right: 10px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .bl {
+            bottom: 10px;
+            left: 10px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .br {
+            bottom: 10px;
+            right: 10px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* --- FINALE OVERLAY --- */
+        #finale-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.95) 0%, rgba(50, 0, 0, 0.98) 100%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        #finale-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .finale-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--tet-gold);
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px #FF4500, 0 0 40px #FFD700;
+            transform: scale(0.5);
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin-bottom: 2rem;
+            z-index: 102;
+            border: 4px double var(--tet-gold);
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        #finale-overlay.active .finale-title {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .horses-container {
+            position: absolute;
+            bottom: 10%;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            pointer-events: none;
+            z-index: 101;
+        }
+
+        .horse {
+            width: 120px;
+            height: auto;
+            position: absolute;
+            left: -200px;
+            /* Start off-screen */
+            bottom: 0;
+            filter: drop-shadow(0 0 5px gold);
+        }
+
+        /* Staggered positions and delays for the stampede */
+        /* Staggered positions and delays for the stampede */
+        /* Random sizes (responsive), speeds, and positions as requested */
+        /* Increased sizes by ~60% */
+        .horse-1 {
+            bottom: 15%;
+            width: clamp(160px, 22vw, 320px);
+            animation-duration: 12s;
+            animation-delay: 0s;
+            z-index: 10;
+        }
+
+        .horse-2 {
+            bottom: 25%;
+            width: clamp(110px, 16vw, 240px);
+            animation-duration: 15s;
+            animation-delay: 1s;
+            z-index: 5;
+            opacity: 0.9;
+        }
+
+        .horse-3 {
+            bottom: 5%;
+            width: clamp(190px, 25vw, 350px);
+            animation-duration: 10s;
+            animation-delay: 2s;
+            z-index: 15;
+        }
+
+        .horse-4 {
+            bottom: 35%;
+            width: clamp(130px, 18vw, 260px);
+            animation-duration: 18s;
+            animation-delay: 0.5s;
+            z-index: 2;
+            opacity: 0.8;
+        }
+
+        .horse-5 {
+            bottom: 20%;
+            width: clamp(140px, 20vw, 290px);
+            animation-duration: 13s;
+            animation-delay: 3s;
+            z-index: 8;
+        }
+
+        @keyframes gallop-loop {
+            0% {
+                left: -200px;
+                transform: scaleX(1);
+            }
+
+            45% {
+                left: 100%;
+                transform: scaleX(1);
+            }
+
+            50% {
+                left: 100%;
+                transform: scaleX(-1);
+            }
+
+            /* Flip at right edge */
+            95% {
+                left: -200px;
+                transform: scaleX(-1);
+            }
+
+            100% {
+                left: -200px;
+                transform: scaleX(1);
+            }
+
+            /* Flip back at left edge */
+        }
+
+        .horse.running {
+            animation-name: gallop-loop;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        /* Dynamic background effect */
+        #finale-overlay.active-bg {
+            background: radial-gradient(circle, #8B0000 0%, #330000 100%);
+            animation: bg-pulse 1s infinite alternate;
+        }
+
+        @keyframes bg-pulse {
+            0% {
+                box-shadow: inset 0 0 50px #FFD700;
+            }
+
+            100% {
+                box-shadow: inset 0 0 100px #FF4500;
+            }
+        }
+
+        .replay-btn {
+            margin-top: 50px;
+            font-family: 'Montserrat', sans-serif;
+            background: transparent;
+            border: 2px solid var(--tet-gold);
+            color: var(--tet-gold);
+            padding: 10px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            opacity: 0;
+            transition: opacity 1s ease 5s;
+            /* Delay appearance */
+        }
+
+        #finale-overlay.active .replay-btn {
+            opacity: 1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 400px) {
+            .letter-inner {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+
+            .finale-title {
+                font-size: 2rem;
+            }
+
+            .horse-runner {
+                width: 150px;
+            }
+        }
+
+        /* --- TET DECORATIONS --- */
+        .lantern-container {
+            position: absolute;
+            top: 0;
+            z-index: 20;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-origin: top center;
+            animation: swing 3s ease-in-out infinite alternate;
+        }
+
+        .lantern-left {
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .lantern-right {
+            right: 5%;
+            animation-delay: 1.5s;
+        }
+
+        .string {
+            width: 2px;
+            height: 50px;
+            background: #8B0000;
+        }
+
+        .lantern {
+            width: 60px;
+            height: 50px;
+            background: radial-gradient(circle, #ff5e62, #ff0000);
+            border-radius: 30px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+        }
+
+        .lantern::before,
+        .lantern::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 6px;
+            background: #FFD700;
+            border-radius: 2px;
+        }
+
+        .lantern::before {
+            top: -3px;
+        }
+
+        .lantern::after {
+            bottom: -3px;
+        }
+
+        .tassel {
+            width: 4px;
+            height: 40px;
+            background: #D00000;
+            margin-top: -2px;
+            position: relative;
+        }
+
+        .firecracker-string {
+            position: absolute;
+            top: 10px;
+            z-index: 15;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fc-left {
+            left: 20px;
+        }
+
+        .fc-right {
+            right: 20px;
+        }
+
+        .fc-item {
+            width: 15px;
+            height: 40px;
+            background: #D00000;
+            margin-bottom: 5px;
+            border-radius: 3px;
+            position: relative;
+            transform: rotate(var(--r));
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .fc-item::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #FFD700;
+        }
+
+        @keyframes swing {
+            0% {
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                transform: rotate(5deg);
+            }
+        }
+
+        /* --- COUNTDOWN OVERLAY --- */
+        #countdown-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 105;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--tet-gold);
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        #countdown-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .countdown-number {
+            font-size: 8rem;
+            font-weight: 800;
+            animation: pulse-count 1s infinite;
+        }
+
+        .happy-new-year-msg {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            display: none;
+
+            /* Gradient Text */
+            background: linear-gradient(to right, #FFD700, #FF4500, #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+
+            /* Glow Effect */
+            text-shadow: 0 0 30px rgba(255, 69, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.6);
+
+            animation: pop-in 1s ease-out, shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+
+
+        @keyframes pulse-count {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pop-in {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            80% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* --- CATCH LUCK GAME --- */
+        #game-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 102;
+            pointer-events: auto;
+            display: none;
+        }
+
+        #game-ui {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 103;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Space out top info and bottom controls */
+            pointer-events: none;
+            padding: 20px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-top: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .game-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--tet-gold);
+            margin: 0;
+            animation: pulse 2s infinite;
+        }
+
+        .game-instruction {
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            pointer-events: auto;
+            flex-wrap: nowrap;
+            /* Prevent wrapping */
+        }
+
+        .score-board {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            /* Smaller font */
+            color: var(--tet-gold);
+            background: rgba(139, 0, 0, 0.8);
+            padding: 5px 15px;
+            /* Smaller padding */
+            border-radius: 50px;
+            border: 2px solid var(--tet-gold);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+            /* Prevent text wrap */
+        }
+
+        .skip-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 5px 10px;
+            /* Smaller padding */
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            /* Smaller font */
+            transition: background 0.3s;
+            white-space: nowrap;
+            /* Prevent text wrap */
+        }
+
+        .skip-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Win Message Overlay */
+        #win-msg {
+            position: fixed;
+            top: 62%;
+            /* Moved down from 50% */
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(139, 0, 0, 0.95);
+            border: 4px double var(--tet-gold);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 105;
+            color: var(--tet-gold);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #win-msg.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .win-text-big {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+        }
+
+        .win-text-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        /* Floating +10 effect */
+        .score-pop {
+            position: absolute;
+            color: var(--tet-gold);
+            font-weight: bold;
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: floatUp 1s forwards;
+            z-index: 104;
+            text-shadow: 1px 1px 0 #d00000;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio id="bg-music" src="MUSIC.mp3"></audio>
+    <audio id="countdown-audio" src="10s.mp3"></audio>
+    <canvas id="bg-canvas"></canvas>
+    <canvas id="game-canvas"></canvas>
+
+    <!-- Game UI -->
+    <div id="game-ui">
+        <div class="game-header">
+            <h2 class="game-title">Hứng Lộc Đầu Năm</h2>
+            <p class="game-instruction">Chạm vật phẩm để nhận lộc! 🧧💰</p>
+        </div>
+        <div class="game-controls">
+            <div class="score-board">Lộc: <span id="score-val">0</span>/68</div>
+            <button class="skip-btn" onclick="window.catchLuckGame.skip()">Bỏ qua >></button>
+        </div>
+    </div>
+
+    <!-- Win Message -->
+    <div id="win-msg">
+        <div class="win-text-big">Chúc Mừng! 🎉</div>
+        <div class="win-text-sub">Bạn Đã Nhận Đủ Lộc Phát!</div>
+    </div>
+
+    <!-- Tet Decorations -->
+    <div class="lantern-container lantern-left">
+        <div class="string"></div>
+        <div class="lantern"></div>
+        <div class="tassel"></div>
+    </div>
+    <div class="lantern-container lantern-right">
+        <div class="string"></div>
+        <div class="lantern"></div>
+        <div class="tassel"></div>
+    </div>
+
+    <!-- Firecrackers -->
+    <div class="firecracker-string fc-left">
+        <!-- Generating firecrackers via loop for simplicity or static -->
+        <div style="width:2px; height:10px; background:#333;"></div>
+        <div class="fc-item" style="--r: 10deg"></div>
+        <div class="fc-item" style="--r: -5deg"></div>
+        <div class="fc-item" style="--r: 15deg"></div>
+        <div class="fc-item" style="--r: -10deg"></div>
+        <div class="fc-item" style="--r: 5deg"></div>
+    </div>
+
+    <div class="firecracker-string fc-right">
+        <div style="width:2px; height:10px; background:#333;"></div>
+        <div class="fc-item" style="--r: -10deg"></div>
+        <div class="fc-item" style="--r: 5deg"></div>
+        <div class="fc-item" style="--r: -15deg"></div>
+        <div class="fc-item" style="--r: 10deg"></div>
+        <div class="fc-item" style="--r: -5deg"></div>
+    </div>
+
+    <!-- ENVELOPE SCENE -->
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+        <div class="envelope">
+            <div class="seal">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#D00000" stroke-width="2" opacity="0.2" />
+                    <text x="50" y="52" text-anchor="middle" dominant-baseline="central"
+                        font-family="'Times New Roman', serif" font-weight="bold" font-size="50" fill="#D00000">馬</text>
+                </svg>
+            </div>
+        </div>
+        <div class="tap-hint">Chạm để mở lì xì</div>
+    </div>
+
+    <!-- LETTER SCENE -->
+    <div class="letter-container" id="letterContainer">
+        <div class="letter-inner">
+
+            <div class="horse-symbol">馬</div>
+
+            <h1>Chúc Mừng<br>Năm Mới 2026</h1>
+
+            <p class="text-center"><strong>Thân gửi anh Đạt,</strong></p>
+
+            <p>Trong không khí đón chào năm mới <span class="highlight">Bính Ngọ 2026</span>, em có đôi lời muốn gửi
+                đến anh.</p>
+
+            <p>Đầu xuân năm mới, em chúc anh Đạt và gia đình một năm dồi dào sức khỏe, vạn sự như ý và luôn tràn ngập
+                niềm vui ạ.</p>
+
+            <p>Em mong sang năm mới anh sẽ gặt hái được nhiều thành công hơn nữa, công việc hanh thông, sự nghiệp thăng
+                tiến và luôn <span class="highlight">"Mã đáo thành công"</span> anh nhé!
+            </p>
+
+            <div class="sender-block">
+                <p class="text-center" style="margin-bottom:0;">Chúc mừng năm mới anh!</p>
+                <p class="text-center">Trợ giảng công ty</p>
+                <span class="sender-name">Tr.Thịnh</span>
+            </div>
+
+            <!-- New Surprise Button -->
+            <div class="text-center">
+                <button class="lucky-btn" onclick="startFinale()">Nhận Lộc✨</button>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <!-- COUNTDOWN OVERLAY -->
+    <div id="countdown-overlay">
+        <div class="countdown-number" id="countdown-display">10</div>
+        <div class="happy-new-year-msg" id="hny-msg">
+            CHÚC MỪNG<br>NĂM MỚI 2026
+        </div>
+    </div>
+
+    <div id="finale-overlay">
+        <div class="finale-title">
+            MÃ ĐÁO<br>THÀNH CÔNG
+        </div>
+
+        <!-- 5 Horses Stampede -->
+        <div class="horses-container">
+            <img src="1.png" class="horse horse-1" alt="Horse 1">
+            <img src="2.png" class="horse horse-2" alt="Horse 2">
+            <img src="3.png" class="horse horse-3" alt="Horse 3">
+            <img src="4.png" class="horse horse-4" alt="Horse 4">
+            <img src="5.png" class="horse horse-5" alt="Horse 5">
+        </div>
+
+        <button class="replay-btn" onclick="location.reload()">Xem lại từ đầu</button>
+    </div>
+
+    <script>
+        // --- INTERACTION ---
+        function openEnvelope() {
+            const wrapper = document.getElementById('envelopeWrapper');
+            const letter = document.getElementById('letterContainer');
+
+            // Add opening class for CSS animation
+            wrapper.classList.add('opening');
+
+            // Wait for animation to finish before showing letter
+            setTimeout(() => {
+                wrapper.style.display = 'none';
+                letter.classList.add('show');
+            }, 500);
+        }
+
+        // --- FINALE SEQUENCE LOGIC ---
+
+
+        // Step 0: Start Catch Luck Game (Clicked "Nhận Lộc")
+        function startFinale() {
+            // Hide letter
+            const letter = document.getElementById('letterContainer');
+            letter.style.opacity = '0';
+            letter.style.transform = 'translateY(-50px)';
+
+            // Start Game
+            window.catchLuckGame = new CatchTheLuckGame();
+            window.catchLuckGame.start();
+
+            // Hide Side Lanterns & Firecrackers
+            document.querySelectorAll('.lantern-container').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.firecracker-string').forEach(el => el.style.display = 'none');
+        }
+
+        // --- CATCH THE LUCK GAME LOGIC ---
+        class CatchTheLuckGame {
+            constructor() {
+                this.canvas = document.getElementById('game-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.ui = document.getElementById('game-ui');
+                this.scoreEl = document.getElementById('score-val');
+
+                this.score = 0;
+                this.targetScore = 68;
+                this.isActive = false;
+                this.items = []; // {x, y, type, speed, size}
+                this.types = ['🧧', '💰', '🪙', '🌸'];
+
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+
+                // Input handling
+                this.handleInput = this.handleInput.bind(this);
+                this.canvas.addEventListener('mousedown', this.handleInput);
+                this.canvas.addEventListener('touchstart', this.handleInput, { passive: false });
+            }
+
+            resize() {
+                this.width = this.canvas.width = window.innerWidth;
+                this.height = this.canvas.height = window.innerHeight;
+            }
+
+            start() {
+                this.isActive = true;
+                window.isGameActive = true; // Pause Bg
+                this.score = 0;
+                this.items = [];
+                this.canvas.style.display = 'block';
+                this.ui.style.display = 'flex';
+                this.scoreEl.textContent = this.score;
+                this.animate();
+            }
+
+            stop() {
+                this.isActive = false;
+                this.isCelebrating = false; // Kill celebration loop
+                window.isGameActive = false; // Resume Bg
+                this.canvas.style.display = 'none';
+                this.ui.style.display = 'none';
+                this.ctx.clearRect(0, 0, this.width, this.height);
+            }
+
+            skip() {
+                this.stop();
+                startCountdown();
+            }
+
+            finish() {
+                this.isActive = false; // Stop spawning game items
+
+                // Show Win Msg with animation
+                const winMsg = document.getElementById('win-msg');
+                winMsg.classList.add('show');
+
+                // Trigger Celebration Effect (Confetti/Flowers)
+                this.celebrate();
+
+                // Wait 3s then transition
+                setTimeout(() => {
+                    winMsg.classList.remove('show');
+                    this.stop(); // This will resume bg
+                    startCountdown();
+                }, 3000);
+            }
+
+            celebrate() {
+                // Initialize confetti
+                this.confetti = [];
+                const colors = ['#FFD700', '#FF0000', '#FF69B4', '#00FF00', '#00FFFF'];
+                for (let i = 0; i < 100; i++) {
+                    this.confetti.push({
+                        x: this.width / 2,
+                        y: this.height / 2,
+                        vx: (Math.random() - 0.5) * 20,
+                        vy: (Math.random() - 0.5) * 20 - 5, // Explode Upwards slightly
+                        size: Math.random() * 8 + 4,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        rotation: Math.random() * 360,
+                        rotationSpeed: (Math.random() - 0.5) * 10,
+                        type: Math.random() > 0.5 ? 'circle' : 'rect'
+                    });
+                }
+                // Continue animation loop to render confetti
+                this.isCelebrating = true;
+                this.animate();
+            }
+
+            handleInput(e) {
+                if (!this.isActive || this.isCelebrating) return; // Disable input during celebration
+                e.preventDefault();
+
+                const rect = this.canvas.getBoundingClientRect();
+                let clientX, clientY;
+
+                if (e.type === 'touchstart') {
+                    for (let i = 0; i < e.changedTouches.length; i++) {
+                        clientX = e.changedTouches[i].clientX - rect.left;
+                        clientY = e.changedTouches[i].clientY - rect.top;
+                        this.checkHit(clientX, clientY);
+                    }
+                } else {
+                    clientX = e.clientX - rect.left;
+                    clientY = e.clientY - rect.top;
+                    this.checkHit(clientX, clientY);
+                }
+            }
+
+            checkHit(x, y) {
+                for (let i = this.items.length - 1; i >= 0; i--) {
+                    const item = this.items[i];
+                    const dist = Math.hypot(item.x - x, item.y - y);
+
+                    // Simple hit detection logic (radius approx size)
+                    if (dist < item.size * 1.5) {
+                        // HIT!
+                        this.score += 2; // +2 per hit to reach 68 faster
+                        this.scoreEl.textContent = this.score;
+                        this.showPopEffect(item.x, item.y);
+                        this.items.splice(i, 1);
+
+                        if (this.score >= this.targetScore) {
+                            setTimeout(() => this.finish(), 500);
+                        }
+                        return; // Catch one at a time per touch point
+                    }
+                }
+            }
+
+            showPopEffect(x, y) {
+                const el = document.createElement('div');
+                el.className = 'score-pop';
+                el.textContent = '+Lộc';
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 1000);
+            }
+
+            animate() {
+                if (!this.isActive && !this.isCelebrating) return;
+
+                this.ctx.clearRect(0, 0, this.width, this.height);
+
+                if (this.isActive) {
+                    // --- GAME PLAY LOGIC ---
+                    // Spawn new items
+                    if (Math.random() < 0.05) {
+                        this.items.push({
+                            x: Math.random() * (this.width - 50) + 25,
+                            y: -50,
+                            type: this.types[Math.floor(Math.random() * this.types.length)],
+                            speed: Math.random() * 3 + 2,
+                            size: 30 + Math.random() * 20
+                        });
+                    }
+
+                    // Update & Draw Items
+                    this.ctx.font = "30px Arial";
+                    this.ctx.textAlign = "center";
+                    this.ctx.textBaseline = "middle";
+
+                    for (let i = this.items.length - 1; i >= 0; i--) {
+                        let item = this.items[i];
+                        item.y += item.speed;
+
+                        this.ctx.font = `${item.size}px Arial`;
+                        this.ctx.fillText(item.type, item.x, item.y);
+
+                        if (item.y > this.height + 50) {
+                            this.items.splice(i, 1);
+                        }
+                    }
+                }
+
+                if (this.isCelebrating) {
+                    // --- CELEBRATION LOGIC ---
+                    for (let i = 0; i < this.confetti.length; i++) {
+                        let p = this.confetti[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.vy += 0.5; // Gravity
+                        p.rotation += p.rotationSpeed;
+                        p.vx *= 0.95; // Air resistance
+                        p.vy *= 0.95;
+
+                        this.ctx.save();
+                        this.ctx.translate(p.x, p.y);
+                        this.ctx.rotate(p.rotation * Math.PI / 180);
+                        this.ctx.fillStyle = p.color;
+
+                        if (p.type === 'circle') {
+                            this.ctx.beginPath();
+                            this.ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+                            this.ctx.fill();
+                        } else {
+                            this.ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                        }
+                        this.ctx.restore();
+                    }
+                }
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+
+
+        // Step 3: Start Countdown
+        function startCountdown() {
+            const countOverlay = document.getElementById('countdown-overlay');
+            const countDisplay = document.getElementById('countdown-display');
+            const hnyMsg = document.getElementById('hny-msg');
+            const bgMusic = document.getElementById('bg-music');
+
+            countOverlay.classList.add('active');
+
+            let timeLeft = 10;
+            countDisplay.textContent = timeLeft;
+
+            // Try to play countdown audio if available
+            const countdownAudio = document.getElementById('countdown-audio');
+            // Play initial '10' if audio supports cues or just start playing context
+            // Simple approach: Play audio loop or single file
+            countdownAudio.play().catch(e => console.log("Countdown audio failed:", e));
+
+            const timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    countDisplay.textContent = timeLeft;
+                } else {
+                    clearInterval(timer);
+                    // 2. Countdown finished!
+                    countDisplay.style.display = 'none'; // Hide number
+                    hnyMsg.style.display = 'block'; // Show Happy New Year
+
+                    // Show Side Lanterns & Firecrackers again
+                    document.querySelectorAll('.lantern-container').forEach(el => el.style.display = 'flex');
+                    document.querySelectorAll('.firecracker-string').forEach(el => el.style.display = 'flex');
+
+                    // Play Music
+                    bgMusic.play().catch(e => console.log("Audio play failed:", e));
+
+                    // Trigger fireworks immediately with HNY
+                    launchFinaleFireworks();
+                    document.getElementById('bg-canvas').style.zIndex = '106'; // Above countdown for fireworks
+
+                    // 3. Transition to Horses Overlay after a delay (e.g. 5 seconds)
+                    setTimeout(() => {
+                        countOverlay.classList.remove('active'); // Hide countdown overlay
+                        const overlay = document.getElementById('finale-overlay');
+                        overlay.classList.add('active');
+                        overlay.classList.add('active-bg');
+
+                        // Bring fireworks slightly behind text but visible
+                        document.getElementById('bg-canvas').style.zIndex = '101';
+
+                        // Trigger animation for all horses
+                        const horses = document.querySelectorAll('.horse');
+                        horses.forEach(horse => {
+                            horse.classList.add('running');
+                        });
+                    }, 5000); // Wait 5s before showing horses
+                }
+            }, 1000);
+        }
+
+        // --- BACKGROUND EFFECT: FALLING FLOWERS & FIREWORKS ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+        let fireworks = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        window.addEventListener('resize', resize);
+        resize();
+
+        // --- PRE-RENDER FLOWER EMOJI ---
+        const flowerCanvas = document.createElement('canvas');
+        flowerCanvas.width = 50;
+        flowerCanvas.height = 50;
+        const fCtx = flowerCanvas.getContext('2d');
+        fCtx.font = "40px Arial";
+        fCtx.textAlign = "center";
+        fCtx.textBaseline = "middle";
+        fCtx.fillText("🌸", 25, 25);
+
+        class Flower {
+            constructor() {
+                this.reset(true);
+            }
+
+            reset(initial = false) {
+                this.x = Math.random() * width;
+                this.y = initial ? Math.random() * height : -20;
+                this.size = Math.random() * 10 + 10; // Slightly larger for emoji
+                this.speedY = Math.random() * 1.5 + 1.5; //lightly slower (2.5 - 5px/frame)
+                this.speedX = (Math.random() - 0.5) * 1; // Slightly more X variation
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 5; // Faster rotation
+                this.opacity = Math.random() * 0.4 + 0.6; // Higher opacity
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX + Math.sin(this.y / 100) * 1.5; // Smoother, wider sway
+                this.rotation += this.rotationSpeed;
+
+                if (this.y > height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+
+                // Draw Image instead of Text (Faster)
+                ctx.globalAlpha = this.opacity;
+                ctx.drawImage(flowerCanvas, -this.size, -this.size, this.size * 2, this.size * 2);
+
+                ctx.restore();
+            }
+        }
+
+        // --- DUST PARTICLES ---
+        let dustParticles = [];
+
+        class DustParticle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 4 + 2;
+                this.speedX = (Math.random() - 0.5) * 1;
+                this.speedY = -Math.random() * 1 - 0.5; // Rise up
+                this.alpha = 0.8;
+                this.decay = 0.03;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.alpha -= this.decay;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = '#8B4513'; // SaddleBrown
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // --- GOLD PARTICLES ---
+        let goldParticles = [];
+
+        class GoldParticle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height - height; // Start above
+                this.size = Math.random() * 4 + 2;
+                this.speedY = Math.random() * 3 + 2; // Faster than flowers
+                this.speedX = (Math.random() - 0.5) * 1;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 5;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+
+                // Reset if falls off screen
+                if (this.y > height) {
+                    this.y = -20;
+                    this.x = Math.random() * width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+
+                // Draw Gold Coin / Ingot shape (simplified as diamond/circle)
+                ctx.fillStyle = '#FFD700';
+                ctx.beginPath();
+                ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Shine
+                ctx.fillStyle = '#FFFFFF';
+                ctx.beginPath();
+                ctx.arc(-this.size / 3, -this.size / 3, this.size / 4, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        // --- FIREWORKS ---
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                // Random velocity
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 4 + 2;
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+                this.alpha = 1;
+                this.decay = Math.random() * 0.015 + 0.005;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += 0.05; // gravity
+                this.alpha -= this.decay;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, 3, 3);
+                ctx.restore();
+            }
+        }
+
+        function launchFinaleFireworks() {
+            // Launch multiple bursts continuously
+            // No limit on burstCount, it goes forever!
+            setInterval(() => {
+                const x = Math.random() * width;
+                const y = Math.random() * (height / 2);
+                const colors = ['#FFD700', '#FF0000', '#FFFFFF', '#FFA500', '#00FF00', '#00FFFF']; // Added more colors for variety
+                const color = colors[Math.floor(Math.random() * colors.length)];
+
+                // Slightly randomize particle count for natural feel (40-80)
+                const pCount = Math.floor(Math.random() * 40) + 40;
+
+                for (let i = 0; i < pCount; i++) {
+                    fireworks.push(new Particle(x, y, color));
+                }
+            }, 800); // Slower interval for continuous loop to avoid clutter (was 400)
+
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push(new Flower());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // If Game is Active, PAUSE background effects (Flowers, dust, gold) 
+            // EXCEPT Fireworks if any were remaining? No, pause everything for clean game bg
+            if (window.isGameActive) {
+                requestAnimationFrame(animate);
+                return;
+            }
+
+            // Draw Flowers
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // Draw Dust Particles
+            dustParticles.forEach((d, index) => {
+                d.update();
+                d.draw();
+                if (d.alpha <= 0) dustParticles.splice(index, 1);
+            });
+
+            // Spawn dust for running horses
+            // Spawning dust for running horses
+            const horses = document.querySelectorAll('.horse.running');
+            horses.forEach((horse, i) => {
+                const rect = horse.getBoundingClientRect();
+
+                // Track previous position to determine direction
+                if (!horse.lastX) horse.lastX = rect.left;
+
+                const dx = rect.left - horse.lastX;
+                horse.lastX = rect.left;
+
+                // Spawn only if visible and moving significantly
+                if (rect.left > -100 && rect.left < window.innerWidth + 100 && Math.abs(dx) > 0.5) {
+                    if (Math.random() > 0.6) {
+                        // Direction based offset (dust behind the horse)
+                        // If moving right (dx > 0), dust is at left (back)
+                        // If moving left (dx < 0), dust is at right (back)
+
+                        let spawnX;
+                        if (dx > 0) {
+                            spawnX = rect.left + 20; // Near tail when running right
+                        } else {
+                            spawnX = rect.right - 20; // Near tail when running left
+                        }
+
+                        // Add some random vertical spread
+                        const spawnY = rect.bottom - 10 + (Math.random() * 10);
+
+                        dustParticles.push(new DustParticle(spawnX, spawnY));
+                    }
+                }
+            });
+
+            // Draw Gold Particles
+            goldParticles.forEach(g => {
+                g.update();
+                g.draw();
+            });
+
+            // Draw Fireworks if any
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                fireworks[i].update();
+                fireworks[i].draw();
+                if (fireworks[i].alpha <= 0) {
+                    fireworks.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+
+</html>
